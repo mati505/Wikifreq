@@ -1,0 +1,209 @@
+[hidden] { display: none !important; }
+
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 640px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  color: #222;
+}
+
+h1 { font-size: 4rem; margin-bottom: .25rem;text-align:center;padding: 2%;}
+h2 { font-size: 2rem; margin-top: 1.5rem;}
+h3 { font-size: 1.1rem; margin-top: 1.5rem;}
+.tagline { color: #555; margin-top: 0;text-align: center; }
+
+.rules {
+  line-height: 1.6;
+  padding-left: 1.2rem;
+}
+
+.screen:not([hidden]) {
+  animation: fadeIn .35s ease;
+}
+
+#title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 1rem 0;
+  padding: .75rem 1rem;
+  background: #f2f4f7;
+  border-radius: 8px;
+}
+
+form { display: flex; gap: .5rem; }
+
+input {
+  flex: 1;
+  padding: .5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color .2s;
+}
+
+input:focus { outline: none; border-color: #4a7bd0; }
+
+select {
+  padding: .4rem;
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+button {
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background: #fff;
+  transition: transform .1s, background .2s, opacity .2s;
+}
+
+button:hover:not(:disabled) { background: #f0f4fa; }
+button:active:not(:disabled) { transform: scale(.96); }
+
+button.primary {
+  background: #4a7bd0;
+  border-color: #4a7bd0;
+  color: #fff;
+  width:100%;
+}
+
+button.primary:hover:not(:disabled) { background: #3d68b8; }
+
+button:disabled,
+input:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.actions {
+  display: flex;
+  gap: .5rem;
+  margin-top: .75rem;
+  flex-wrap: wrap;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: .75rem;
+}
+
+th, td {
+  padding: .4rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Empty placeholder rows */
+tr.empty td {
+  color: #bbb;
+  font-style: italic;
+}
+
+#msg {
+  min-height: 1.4em;
+  margin: .5rem 0;
+  color: #555;
+}
+
+.stats { margin-top: .5rem; }
+
+#score { display: inline-block; }
+
+.muted {
+  color: #888;
+  font-size: .9rem;
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-6px); }
+  75%      { transform: translateX(6px); }
+}
+
+@keyframes bump {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+@keyframes flashGood {
+  0%   { background: #c8f2d0; }
+  100% { background: transparent; }
+}
+
+#title.fade-in,
+#msg.fade-in,
+#results-msg.fade-in { animation: fadeIn .35s ease; }
+
+tr.pop-in { animation: popIn .35s ease; }
+
+td.pts-good { animation: flashGood .9s ease; font-weight: 600; }
+
+input.shake { animation: shake .35s ease; border-color: #d55; }
+
+#score.bump { animation: bump .4s ease; }
+
+/* Respect users who've turned off motion in their system settings */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+.bar {
+  height: 8px;
+  background: rgba(128, 128, 128, 0.25);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 25px;
+  margin-bottom:25px;
+}
+#bar-fill {
+  height: 100%;
+  width: 0;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+.pick-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.pick {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.pick:hover { border-color: currentColor; }
+.pick small {
+  display: none;
+}
+.pick.selected{
+  border: 1px solid rgb(108, 108, 227);
+}
+.pick.selected small {
+  display: block;
+}
