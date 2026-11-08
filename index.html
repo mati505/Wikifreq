@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wikifreq</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Wikifreq</h1>
+<!-- Start screen: rules and category -->
+<!-- Start screen: rules and category -->
+<section id="start" class="screen">
+  <p class="tagline">Find the rare words hidden in a random Wikipedia article.</p>
+
+  <h2>How to play</h2>
+  <ul class="rules">
+    <li>You get 5 guesses per article. Type one word at a time.</li>
+    <li>Rarer words score more, up to 100 points each.</li>
+    <li>Title words, generic words, and words not in the article score nothing.</li>
+    <li>Words from the same family, such as "run" and "running", count once.</li>
+    <li>Hints cost 50 points each, and you get two per article. Hints reveal part of a 100 point word.</li>
+    <li>Case doesn't matter. Spelling does.</li>
+  </ul>
+
+  <h2>Categories:</h2>
+  <select id="category" hidden>
+    <option value="all" selected>Classic</option>
+    <option value="music">Music</option>
+    <option value="film">Film & TV</option>
+    <option value="videogames">Video games</option>
+    <option value="science">Science</option>
+    <option value="history">History</option>
+    <option value="geography">Geography</option>
+    <option value="sports">Sports</option>
+    <option value="food">Food & drink</option>
+    <option value="trending">Trending</option>
+  </select>
+  <div id="category-list" class="pick-list"></div>
+
+  <button id="start-btn" class="primary" type="button">Start</button>
+
+  <!-- Shown in place of the Start button after Classic is pressed -->
+  <div id="difficulty-section" hidden>
+    <p>Select difficulty:</p>
+    <select id="difficulty" hidden>
+      <option value="easy">Easy</option>
+      <option value="normal" selected>Normal</option>
+      <option value="hard">Hard</option>
+    </select>
+    <div id="difficulty-list" class="pick-list"></div>
+  </div>
+</section>
+<!-- Round screen -->
+<section id="game" class="screen" hidden>
+  <div id="title">Loading…</div>
+  <div id="loading" hidden>
+    <p id="loading-text">Finding an article…</p>
+    <p class="muted">This can take a few seconds - we are searching the whole Wikipedia for you...</p>
+  <div class="bar"><div id="bar-fill"></div></div>
+  </div>
+  <form id="guessForm">
+    <input id="guess" autocomplete="off" spellcheck="true"placeholder="Type one word" disabled>
+    <button id="submit" type="submit" disabled>Guess</button>
+  </form>
+
+  <div class="actions">
+    <button id="hint" type="button" disabled>Hint (−2 points)</button>
+    <button id="end" type="button" disabled>End article</button>
+  </div>
+  <div id="msg"></div>
+
+  <div class="stats">Guesses left: <strong id="left">5</strong> · Round score: <strong id="score">0</strong><p id="bank">Points bank: 0</p></div>
+
+  <table>
+    <thead><tr><th>Word</th><th>Occurrences</th><th>Points</th></tr></thead>
+    <tbody id="guesses"></tbody>
+  </table>
+</section>
+
+<!-- Results screen: round result and full leaderboard -->
+<section id="results" class="screen" hidden>
+  <h2 id="results-heading">Round over</h1>
+  <p id="results-msg"></p>
+  <a id="article-link" href="#" target="_blank" rel="noopener noreferrer">
+    Read the mystery article on Wikipedia
+  </a>
+  <h3>Leaderboard</h3>
+  <table>
+    <thead><tr><th>#</th><th>Article</th><th>Score</th></tr></thead>
+    <tbody id="board"></tbody>
+  </table>
+
+  <div class="actions">
+    <button id="continue" class="primary" type="button">Continue</button>
+    <button id="menu" type="button">Menu</button>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
